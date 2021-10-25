@@ -1,0 +1,9 @@
+// .babelrc 라는 이름으로도 생성 가능
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        
+    ]
+}

@@ -24,18 +24,19 @@ Babel 작업 설정
     npm init -y
 
 
-2. babel 모듈 설치 v7 - [Global]
+2. babel 모듈 설치 v7 - [Global] - Option
     npm i -g @babel/core @babel/cli
 
 
 3. babel 모듈 설치 v7 - [Local]
     1) 공통 모듈
         npm i -D @babel/core @babel/cli
+        npm install --save-dev @babel/core @babel/cli
 
     2) ES5로 변환 모듈
         npm i -D @babel/preset-env
 
-    3) ES 2017 모듈
+    3) ES 2017 모듈 - 병합되서 없어짐...
         npm i -D @babel/preset-es2017
 
 
@@ -62,6 +63,9 @@ Babel 작업 설정
 
 6. 빌드
     특정 디렉토리 안에 모든 JS 파일을 지정한 폴더에 출력
+        npx babel src/A04_ArrowFn.js -d dist
+
+        src 폴더의 모든 파일
         npx babel src -d dist
 
         npx babel src -d dist --presets @babel/preset-env
