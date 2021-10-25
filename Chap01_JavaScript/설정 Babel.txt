@@ -88,6 +88,7 @@ Babel 작업 설정
 
 Webpack 설정 
     npm i -D webpack webpack-cli
-
+    @webpack-cli/generators
+    
     npx webpack-cli init
     

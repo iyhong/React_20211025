@@ -6,8 +6,12 @@ import onDefault, { name } from './A13_DefaultModule'
 
 console.log(num);
 console.log(onAdd(10, 20));
-console.log(long);
+console.log(long());
 
 console.log(onDefault(10, 20));
 console.log(name);
 
+window.onload = function() {
+    var result = document.getElementById('result');
+    result.innerHTML = `받은 num값: ${num}, onAdd: ${onDefault(100, 200)}입니다.`;
+}
