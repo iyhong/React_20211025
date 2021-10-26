@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+import A01ClassProps from './components/A01ClassProps'
 
 function App() {
+  const user = { name: 'HungBu', age: 20 };
+  const ary = [10, 20, 30];
+  const onAdd = (x, y) => `${x} + ${y} = ${x + y}`;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="card-body">
+      <h1>Chap03 Class Component</h1>
+
+      <A01ClassProps name="NolBu" age={30} user={user} arr={ary} onAdd={onAdd} isChecked >
+        This is App Content
+      </A01ClassProps>
     </div>
   );
 }
