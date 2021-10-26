@@ -51,7 +51,7 @@ package.json 설명
 
     특정 버전 설치
     npm i 라이브러리이름@4.1.1  => 일치하는 버전 설치
-    npm i 라이브러리이름@4      => 메이저 버번이 3의 마지막 버전
+    npm i 라이브러리이름@4      => 메이저 버번이 4의 마지막 버전
 
 VSCode Plugin
     Korean Language Pack for Visual Studio Code -> VSCode 새로 시작해야 적용됨.

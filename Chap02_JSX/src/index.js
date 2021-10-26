@@ -8,7 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root')   // createElement(App).appendTo('root');
 );
 
 reportWebVitals();      // console.log. 성능 체크 함수를 지정.
