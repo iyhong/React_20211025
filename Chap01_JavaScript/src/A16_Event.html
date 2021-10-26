@@ -7,7 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript">
-        
+        function btn02Click(evt) {
+            console.log('Button 02 Click: ', evt);
+        }
+        function btn04Click(evt, name) {
+            console.log('Button 04 Click: ' + name, evt);
+        }
+
+        function onLoadEvent(evt) {
+            // console.log(evt);
+            document.getElementById('btn03').addEventListener('click', function(evt){
+                console.log('Button 03 Click: ', evt);
+            });
+
+            // Event의 첫번째 함수는 Event listener. 자동으로 event 객체가 주입된다.
+            document.getElementById('btn04').addEventListener('click', (evt) => {
+                btn04Click(evt, 'NolBu');
+            })
+        }
+        window.addEventListener('load', onLoadEvent)
     </script>
 </head>
 <body>
@@ -15,8 +33,8 @@
     <div>
         <h1>JavaScript Event</h1>
 
-        <button name="button 01">Btn 01</button>
-        <button name="button 02">Btn 02</button>
+        <button name="button 01" onclick="console.log('Button 01 Clicked')">Btn 01</button>
+        <button name="button 02" onclick="btn02Click(event)">Btn 02</button>
         <button name="button 03" id="btn03">Btn 03</button>
         <button name="button 04" id="btn04">Btn 04</button>
     </div>

@@ -1,6 +1,7 @@
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import A01ClassProps from './components/A01ClassProps'
+import A02ClassState from './components/A02ClassState'
 
 function App() {
   const user = { name: 'HungBu', age: 20 };
@@ -10,6 +11,8 @@ function App() {
   return (
     <div className="card-body">
       <h1>Chap03 Class Component</h1>
+
+      <A02ClassState /><br />
 
       <A01ClassProps name="NolBu" age={30} user={user} arr={ary} onAdd={onAdd} isChecked >
         This is App Content
