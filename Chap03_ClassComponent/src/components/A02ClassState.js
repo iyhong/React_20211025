@@ -46,16 +46,37 @@ export class A02ClassState extends Component {
     // Array
     addArray = () => {
         const random = Math.ceil( Math.random() * 100 );
-        // this.setState( {ary: this.state.ary.push(random)} );
+        // this.setState( {ary: this.state.ary.push(random)} );     // Error
         this.setState( {ary: this.state.ary.concat(random)} );
     }
     updateArray = (index, value) => {
-        // this.state.ary[index] = value;
-        // this.setState({ary: this.state.ary[index] = value})
+        // this.state.ary[index] = value;                           // Error
+        // this.setState({ary: this.state.ary[index] = value})      // Error
         const newAry = this.state.ary.map( (item, i) => i === index ? value : item )
         // console.log(newAry === this.state.ary )
         // console.log(newAry, this.state.ary);
         this.setState({ary: newAry});
+    }
+    deleteArray = (index) => {
+        // this.setState({ary: delete this.state.ary[index]})
+        const newAry = this.state.ary.filter( (item, i) => index !== i );
+        this.setState({ary: newAry});
+    };
+
+    addObject = (key, value) => {   // key => 'address'
+        // const newAry = this.state.user[key] = value;
+        const newUser = {...this.state.user, [key]: value};     // 있으면 덮어쓰기, 없으면 추가
+        this.setState({user: newUser})
+    }
+
+    updateObject = (key, value) => {   // key => 'address'
+        const newUser = {...this.state.user, [key]: value};     // 있으면 덮어쓰기, 없으면 추가
+        this.setState({user: newUser})
+    }
+
+    deleteObject = (key) => {           // key => 'address'
+        delete this.state.user[key];                            // 기존 주소값에서 해당 항목만 삭제
+        this.setState({user: {...this.state.user}})             // 남아있는 요소만 새롭게 객체로 만들어 대입
     }
 
     render() {
@@ -81,11 +102,11 @@ export class A02ClassState extends Component {
 
                     <button onClick={this.addArray}>Add Array</button>
                     <button onClick={ (evt) => this.updateArray(0, 1000) }>Update Array</button>
-                    <button>Delete Array</button>
+                    <button onClick={ () => this.deleteArray(0) }>Delete Array</button>
 
-                    <button>Add Object</button>
-                    <button>Update Object</button>
-                    <button>Delete Object</button>
+                    <button onClick={ () => this.addObject('address', 'Seoul') }>Add Object</button>
+                    <button onClick={ () => this.updateObject('address', 'Busan') }>Update Object</button>
+                    <button onClick={ () => this.deleteObject('address') }>Delete Object</button>
                 </div>
             </div>
         )
