@@ -2,6 +2,7 @@ import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import A01ClassComp from './components/A01ClassComp'
 import A02FuncComp from './components/A02FuncComp'
 import A03Fragment from './components/A03Fragment'
+import A04Library from './components/A04Library'
 
 // JSX => JavaScript XML
 // 1. 종료 태그가 항상 있어야 한다.
@@ -83,8 +84,10 @@ function App() {
   return (
     <div className="card-body">
 
-      <A03Fragment /><br />
+      <A04Library /><br />
       
+      <A03Fragment /><br />
+
       <A02FuncComp /><br />
 
       <A01ClassComp /><br />
