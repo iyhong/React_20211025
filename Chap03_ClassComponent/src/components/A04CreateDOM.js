@@ -23,6 +23,10 @@ export class A05CreateDOM extends Component {
     addTeam = () => this.setState({baseObject: this.state.baseObject.concat({id: 4, team: '삼성', value:"Samsung"})});
     showHide = () => this.setState({isChecked: !this.state.isChecked});
 
+    makeDOM = () => this.baseArray.map((item, index) => (
+        <option key={index}>{item}</option>
+    ));
+
     render() {
         return (
             <div>
@@ -31,13 +35,13 @@ export class A05CreateDOM extends Component {
                 SelectBox: {this.state.teamOne}<br/>
                 <select name="teamOne" className="form-control" onChange={this.changeValue}>
                     <option>선택해주세요</option>
-                    
+                    { this.baseArray.map( item => <option key={item}>{item}</option>) }
                 </select>
 
                 SelectBox: {this.state.teamTwo}<br/>
                 <select name="teamTwo" className="form-control" onChange={this.changeValue}>
                     <option value="">선택해주세요</option>
-                    
+                    { this.makeDOM() }
                 </select>
 
                 <table className="table">

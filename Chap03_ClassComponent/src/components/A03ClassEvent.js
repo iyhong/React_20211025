@@ -1,14 +1,22 @@
 
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 export class A03ClassEvent extends Component {
+
+    constructor() {
+        super();
+
+        // DOM에 속성으로 할당해서 지정한 이름으로 참조할 수 있는 변수를 생성한다.
+        this.nameRef = createRef();
+        this.ageRef = createRef()
+    }
 
     state = {
         name: 'NolBu',
         age: 30,
         date: '2021-12-25',
         sports: 'baseball',
-        language: new Set(['Angular']),
+        language: new Set(['Angular']),     // 중복 데이터를 허용하지 않는다.
         isChecked: false,
         baseball: 'NC',
         four: [],
@@ -17,7 +25,14 @@ export class A03ClassEvent extends Component {
     sendData = (evt) => {
         evt.preventDefault();           // DOM이 가지고 있는 내장 JavaScript 기능을 OFF.
         // Ajax로 서버에 전송
-        console.log(this.state);
+        // console.log(this.state);
+        const data = {
+            ...this.state,
+            language: Array.from(this.state.language)
+        };
+        console.log(data);
+
+        this.ageRef.current.style.color = 'red'
     }
     
     changeName = (evt) => {
@@ -38,6 +53,32 @@ export class A03ClassEvent extends Component {
 
     changeCheck = () => {
         this.setState({isChecked: !this.state.isChecked})
+    };
+
+    changeCheckBox = (evt) => {
+        const value = evt.target.value;
+        if(this.state.language.has(value)) {
+            this.state.language.delete(value);      // 주소값이 변경되지 않고 기존의 데이터를 조작 
+        } else {
+            this.state.language.add(value);
+        }
+        const newSet = new Set( Array.from(this.state.language) );
+        this.setState({language: newSet})
+    };
+
+    changeSelectBox = (evt) => {
+        const elem = evt.target.selectedOptions;
+        // console.log(elem)
+        const data = [...elem].map( item => item.value );
+        // console.log(data);
+        this.setState({four: data});
+    };
+
+    componentDidMount() {
+        console.log('돔 다 만들어짐..');
+        // console.log(this.nameRef.current)
+        this.nameRef.current.style.background = 'lightgreen';
+        // this.nameRef.current.focus();        // 필요하시면 주석 해제하세요
     }
 
 
@@ -48,10 +89,10 @@ export class A03ClassEvent extends Component {
 
                 <form>
                     Name: {this.state.name}
-                        <input type="text" name="name" className="form-control" 
+                        <input type="text" name="name" className="form-control" ref={this.nameRef}
                             value={this.state.name} onChange={this.changeName} />
                     Age: {this.state.age} 
-                        <input type="text" name="age" className="form-control" 
+                        <input type="text" name="age" className="form-control" ref={this.ageRef}
                             value={this.state.age} onChange={this.changeNumber} />
                     Date: {this.state.date}
                         <input type="date" name="date" className="form-control" 
@@ -83,15 +124,18 @@ export class A03ClassEvent extends Component {
 
                     CheckBox: { Array.from(this.state.language) } <br />
                         <div className="form-check">
-                            <input type="checkbox" name="language" value="Angular" id="angular" className="form-check-input" />
+                            <input type="checkbox" name="language" value="Angular" id="angular" className="form-check-input"
+                                onChange={this.changeCheckBox} defaultChecked={this.state.language.has("Angular")} />
                             <label htmlFor="baseball" className="form-check-label">앵귤러</label>
                         </div>
                         <div className="form-check">
-                            <input type="checkbox" name="language" value="React" id="react" className="form-check-input" />
+                            <input type="checkbox" name="language" value="React" id="react" className="form-check-input"
+                                onChange={this.changeCheckBox} defaultChecked={this.state.language.has("React")} />
                             <label htmlFor="react" className="form-check-label">리엑트</label>
                         </div>
                         <div className="form-check">
-                            <input type="checkbox" name="language" value="Vue" id="vue" className="form-check-input" />
+                            <input type="checkbox" name="language" value="Vue" id="vue" className="form-check-input"
+                                onChange={this.changeCheckBox}  defaultChecked={this.state.language.has("Vue")}/>
                             <label htmlFor="vue" className="form-check-label">뷰</label>
                         </div>
 
@@ -104,7 +148,8 @@ export class A03ClassEvent extends Component {
                         </select>
                     
                     SelectBox Multi: {Array.from(this.state.four) }<br />
-                        <select name="four" multiple size="3" className="form-control" >
+                        <select name="four" multiple size="3" className="form-control"
+                            onChange={this.changeSelectBox} >
                             <option>NC</option>
                             <option>두산</option>
                             <option>엘지</option>
