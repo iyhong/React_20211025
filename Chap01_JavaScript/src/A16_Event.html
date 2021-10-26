@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .outer { width: 200px; height: 200px; position: relative; background-color: yellow;}
+        .inner { width: 100px; height: 100px; position: relative; background-color: red;}
+    </style>
     <title>Document</title>
     <script type="text/javascript">
         function btn02Click(evt) {
@@ -23,7 +27,14 @@
             // Event의 첫번째 함수는 Event listener. 자동으로 event 객체가 주입된다.
             document.getElementById('btn04').addEventListener('click', (evt) => {
                 btn04Click(evt, 'NolBu');
-            })
+            });
+
+            document.getElementById('outer').addEventListener('click', function(evt){
+                console.log('Outer=> ', evt.target, evt.currentTarget);
+            });
+            document.getElementById('inner').addEventListener('click', function(evt){
+                console.log('Inner=> ', evt.target, evt.currentTarget);
+            });
         }
         window.addEventListener('load', onLoadEvent)
     </script>
@@ -37,6 +48,10 @@
         <button name="button 02" onclick="btn02Click(event)">Btn 02</button>
         <button name="button 03" id="btn03">Btn 03</button>
         <button name="button 04" id="btn04">Btn 04</button>
+    </div>
+
+    <div class="outer" id="outer">
+        <div class="inner" id="inner"></div>
     </div>
 </body>
 </html>

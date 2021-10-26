@@ -37,6 +37,7 @@ export class A03ClassEvent extends Component {
     
     changeName = (evt) => {
         console.log(evt.target);        // Event를 발생시킨 DOM 자체를 의미한다.
+        console.log(evt.currentTarget)
         if(evt.target.name === '') alert('값이 없습니다.')
         this.setState({name: evt.target.value})
     }
