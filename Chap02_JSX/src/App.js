@@ -1,4 +1,7 @@
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import A01ClassComp from './components/A01ClassComp'
+import A02FuncComp from './components/A02FuncComp'
+import A03Fragment from './components/A03Fragment'
 
 // JSX => JavaScript XML
 // 1. 종료 태그가 항상 있어야 한다.
@@ -79,6 +82,13 @@ function App() {
 
   return (
     <div className="card-body">
+
+      <A03Fragment /><br />
+      
+      <A02FuncComp /><br />
+
+      <A01ClassComp /><br />
+
       <div>DOM 내부에서 변수의 참조, JavaScript 정의 등을 이용하는 경우 바인딩(보간법)사용</div>
       { makeOne('NolBu') }
       <br />

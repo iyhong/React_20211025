@@ -31,10 +31,10 @@ class Jumsu {
     }
 
     // setter가 없으므로 _kor 값은 변경할 수 없이 참조만 가능.
-    // set kor(kor) {
-    //     if(kor > 100) alert('잘못된 값입니다.')
-    //     this._kor = kor;
-    // }
+    set kor(kor) {
+        if(kor > 100) alert('잘못된 값입니다.')
+        this._kor = kor;
+    }
 
 };
 
