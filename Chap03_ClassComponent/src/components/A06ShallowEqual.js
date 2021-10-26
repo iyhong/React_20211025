@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 // npm i shallow-equal;
+import {shallowEqualArrays, shallowEqualObjects} from 'shallow-equal'
 
 export class A07ShallowEqual extends Component {
     
@@ -25,12 +26,23 @@ export class A07ShallowEqual extends Component {
         const one = ['Angular', ary];
         const two = ['Angular', ary];
         const three = ['Angular', ['Angular', 'React']];
-
+        console.log(one === two);
+        console.log(one === three);
+        console.log('')
+        console.log(shallowEqualArrays(one, two));
+        console.log(shallowEqualArrays(one, three));
+        console.log('');
 
         const obj = {name: 'NolBu', age: 30};
         var obj1 = {title: 'Shallow', obj: obj}
         var obj2 = {title: 'Shallow', obj: obj}
         var obj3 = {title: 'Shallow', obj: {name: 'NolBu', age: 30}}
+        console.log(shallowEqualObjects(obj1, obj2));
+        console.log(shallowEqualObjects(obj1, obj3));
+    }
+
+    shouldComponentUpdate(props, state) {
+        return !shallowEqualObjects(state, this.state);
     }
 
     render() {
