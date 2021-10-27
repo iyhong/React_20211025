@@ -9,6 +9,41 @@ function A02FuncState() {
     const [ary, setAry] = useState( [10, 20, 30] );
 
     const changeName = () => setName('HungBu');
+    const changeAge = (num) => {
+        let value = Number(num);
+        if(isNaN(value)) value = 0;
+        setAge(value); 
+    };
+    const changeCheck = () => setIsChecked(!isChecked);
+
+    // Array
+    const addArray = () => {
+        const data = Math.ceil(Math.random() * 100);
+        setAry(ary.concat(data));
+    };
+    const updateArray = (index, value) => {
+        const data = ary.map( (item, i) => index === i ? value : item );
+        setAry(data);
+    };
+    const deleteArray = (index) => {
+        const data = ary.filter( (item, i) => index !== i );
+        setAry(data);
+    };
+
+    // Object
+    const addObject = (key, value) => {
+        const data = {...user, [key]: value};
+        setUser(data);
+    };
+    const updateObject = (key, value) => {
+        const data = {...user, [key]: value};
+        setUser(data);
+    }
+    const deleteObject = (key) => {
+        delete user[key];
+        setUser( {...user} );
+    }
+    
 
     return (
         <div>
@@ -23,18 +58,20 @@ function A02FuncState() {
             </div>
             <br />
 
+            { ary.map( (item, i) => <span key={i}>{item}{' '}</span>) }
+
             <div>
                 <button onClick={changeName}>Name</button>
-                <button>Age</button>
-                <button>Boolean</button>
+                <button onClick={ () => changeAge(10) }>Age</button>
+                <button onClick={changeCheck}>Boolean</button>
 
-                <button>Add Array</button>
-                <button>Update Array</button>
-                <button>Delete Array</button>
+                <button onClick={ addArray }>Add Array</button>
+                <button onClick={ () => updateArray(1, 1000) }>Update Array</button>
+                <button onClick={ () => deleteArray(0) }>Delete Array</button>
 
-                <button>Add Object</button>
-                <button>Update Object</button>
-                <button>Delete Object</button>
+                <button onClick={ () => addObject('address', 'Seoul') }>Add Object</button>
+                <button onClick={ () => updateObject('address', 'Busan') }>Update Object</button>
+                <button onClick={ () => deleteObject('address') }>Delete Object</button>
             </div>
         </div>
     )

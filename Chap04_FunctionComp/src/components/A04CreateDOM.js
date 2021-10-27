@@ -20,6 +20,10 @@ function A04CreateDOM() {
     const addTeam = () => setBaseObject(baseObject.concat({id: 4, team: '삼성', value:"Samsung"}))
     const showHide = () => setData({...data, isChecked: !data.isChecked})
 
+    const makeOption = () => baseObject.map( item => (
+        <option key={item.id} value={item.value}>{item.team}</option>
+    ));
+
     return (
         <div>
             <h3>A04 Make DOM</h3>
@@ -27,13 +31,13 @@ function A04CreateDOM() {
             SelectBox: {data.teamOne}<br/>
             <select name="teamOne" className="form-control" onChange={changeValue}>
                 <option>선택해주세요</option>
-                
+                { baseArray.map( item => <option key={item}>{item}</option>)}
             </select>
 
             SelectBox: {data.teamTwo}<br/>
             <select name="teamTwo" className="form-control" onChange={changeValue}>
                 <option value="">선택해주세요</option>
-                
+                { makeOption() }
             </select>
 
             <table className="table">
