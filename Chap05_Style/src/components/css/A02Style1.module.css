@@ -1,0 +1,13 @@
+
+.title {
+    background-color: gray;
+    color: aqua;
+    font-size: 24pt;
+    font-weight: bold;
+    padding: 20px;
+}
+
+/* 모듈이 아닌 일반 CSS로 동작한다 */
+:global .innerColor {
+    color: orange;
+}
