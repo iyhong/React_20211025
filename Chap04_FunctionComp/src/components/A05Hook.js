@@ -1,5 +1,5 @@
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 const A05Hook = () => {
 
@@ -39,9 +39,20 @@ const A05Hook = () => {
 
     // 실행 구문에서 state 변수를 참조하지 않는다. 그러니 한번 작성되고 난 후 새롭게 만들어질 필요가 없음.
     // []에 의존 state 변수를 정의하지 않으면 최초에 1번만 만들어진다.
-    const changeCnt = useCallback( evt => setCnt(evt.target.value), []);
+    const changeCnt = useCallback( evt => setCnt(Number(evt.target.value)), []);
 
     const addList = useCallback( () => setList(list.concat(cnt)), [cnt, list] );
+
+    const getAverage = (ary) => {
+        console.log('계산중...');
+        if(ary.length === 0) return 0;
+        const total = ary.reduce( (sum, x) => sum + x, 0);
+        return total / ary.length;
+    }
+    // 일반적인 함수가 새롭게 만들어지는 시점을 결정
+    const getAverageMemo = useMemo(() => {
+        return getAverage(list);                // 실행할 메서드
+    }, [list])                                  // state의 어떤 변수가 변경되는 경우만 새롭게 생성할 것인가를 결정
 
     return (
         <div>
@@ -58,7 +69,7 @@ const A05Hook = () => {
                 Today: { today.toLocaleString() }<br />
                 <br />
 
-                Avg: {cnt}
+                Avg: {cnt} / {getAverageMemo}
                     <div className="input-group">
                         <input type="text" name="str" className="form-control"
                             value={cnt} onChange={changeCnt}/>
