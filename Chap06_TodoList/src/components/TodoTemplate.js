@@ -6,7 +6,7 @@ import produce from 'immer'
 
 const makeTodo = () => {
     const todos = [];
-    for(let i = 1; i <= 5; i++) {
+    for(let i = 1; i <= 5000; i++) {
         todos.push( {id: i, text: `${i}번째 할 일`, done: false} );
     }
     return todos;
@@ -15,7 +15,7 @@ const makeTodo = () => {
 const TodoTemplate = () => {
 
     const [todoList, setTodoList] = useState(makeTodo());
-    const cnt = useRef(6);
+    const cnt = useRef(5001);
 
     // const updateTodo = useCallback( id => {
     //     const data = todoList.map( todo => todo.id === id ? {...todo, done: !todo.done} : todo);
