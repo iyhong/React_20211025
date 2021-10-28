@@ -1,8 +1,12 @@
 
 // npm i query-string
 import React from 'react';
+import { useLocation } from 'react-router';
+import qs from 'query-string'
 
 const A04ArgsComponent = () => {
+
+    const location = useLocation();
 
     const data = [
         { "id": 1, "name": "Apples", "category": "Fruit", "price": 1.20, "expiry": 10 },
@@ -13,6 +17,10 @@ const A04ArgsComponent = () => {
         { "id": 6, "name": "Trout", "category": "Fish", "price": 12.93, "expiry": 4 }
     ];
 
+    const query = qs.parse(location.search);
+    // console.log(query);
+    const product = data[Number(query.id)]
+
     return (
         <div>
             <h5>Argument Component</h5>
@@ -20,16 +28,23 @@ const A04ArgsComponent = () => {
             <br />
 
             <div>
-                pathname: <br/>
-                search: <br/>
-                hash: 
+                pathname: {location.pathname}<br/>
+                search: {location.search}<br/>
+                hash: {location.hash}
             </div>
             <br />
 
             <div>
-                Name: <br/>
-                Age: <br/>
-                Address: 
+                Name: {query.name}<br/>
+                Age: {query.age}<br/>
+                Address: {query.id}
+            </div>
+            <br />
+
+            <div>
+                id: {product.id}<br/>
+                name: {product.name}<br/>
+                category: {product.category}
             </div>
             <br />
 
