@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { memo } from 'react'
 import './css/todos.css'
 
 function TodoListItem(props) {
@@ -21,4 +21,5 @@ function TodoListItem(props) {
     )
 }
 
-export default TodoListItem
+// props의 값이 변경되지 않으면 이전 가상돔에 있었던 내용을 그대로 출력
+export default memo(TodoListItem)

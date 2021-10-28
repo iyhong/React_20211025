@@ -17,37 +17,41 @@ const TodoTemplate = () => {
     const [todoList, setTodoList] = useState(makeTodo());
     const cnt = useRef(5001);
 
-    // const updateTodo = useCallback( id => {
-    //     const data = todoList.map( todo => todo.id === id ? {...todo, done: !todo.done} : todo);
-    //     setTodoList(data);
-    // }, [todoList]);
-
+    /*
     const updateTodo = useCallback( id => {
-        /*
-        const data = todoList.map( todo => {
+        // const data = todoList.map( todo => todo.id === id ? {...todo, done: !todo.done} : todo);
+        setTodoList((todoList) => todoList.map( todo => todo.id === id ? {...todo, done: !todo.done} : todo));
+    }, []);
+    */
+    
+    const updateTodo = useCallback( id => {
+        
+        const data = (todoList) => todoList.map( todo => {
             if(todo.id === id) return {...todo, done: !todo.done}
             else return todo
         })
-        */
-        const index = todoList.findIndex( todo => todo.id === id );
-        const data = produce(todoList, draft => {
+        
+       /*
+        const index = (todoList) => todoList.findIndex( todo => todo.id === id );
+        const data = produce( (todoList) => todoList, draft => {
             draft[index].done = !draft[index].done;
         })
+        */
         setTodoList(data);
-    }, [todoList]);
+    }, []);
 
     const deleteTodo = useCallback( id => {
-        const data = todoList.filter( todo => {
+        const data = (todoList) => todoList.filter( todo => {
             return todo.id !== id
         });
         setTodoList(data);
-    }, [todoList])
+    }, [])
 
     // let cnt = 6;
     const addTodo = useCallback( text => {
         const todo = {id: cnt.current++, text: text, done: false};
-        setTodoList(todoList.concat(todo));
-    }, [todoList]);
+        setTodoList( (todoList) => todoList.concat(todo));
+    }, []);
 
 
     return (
