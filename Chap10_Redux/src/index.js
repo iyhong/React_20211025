@@ -4,9 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+// chrome에서 state 변경을 확인하기 위한 lib
+import { composeWithDevTools } from 'redux-devtools-extension'
+
+import counterR from './modules/counterR'
+const store = createStore(counterR, composeWithDevTools());
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

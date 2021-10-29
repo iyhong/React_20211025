@@ -11,13 +11,14 @@ const makeTodo = () => {
     }
     return todos;
 };
-
 let cnt = 6;
+
+// Action
+
 
 const init = {
     todoList: makeTodo(),
     text: '',
-    
 }
 const todoListR = (state = init, action) => {
     return state;
