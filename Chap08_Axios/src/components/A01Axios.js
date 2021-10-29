@@ -67,12 +67,12 @@ function A01Axios() {
     return (
         <div>
             <h3>A01 Axios GET</h3>
-            <button onClick={() => getContactList()}>DATA LIST</button>
-            <button onClick={() => getContactListAsync()}>DATA LIST ASYNC</button>
+            <button onClick={ () => getContactList()}>DATA LIST</button>
+            <button onClick={ () => getContactListAsync()}>DATA LIST ASYNC</button>
             <button onClick={ () => getContact(50) }>GET</button>
             <button onClick={addContact}>ADD</button>
-            <button onClick={() => updateContact(1635405651905)}>UPDATE</button>
-            <button onClick={() => deleteContact(1635405651905)}>DELETE</button><br />
+            <button onClick={ () => updateContact(1635405651905)}>UPDATE</button>
+            <button onClick={ () => deleteContact(1635405651905)}>DELETE</button><br />
             <br />
             
             <textarea cols="100" rows="15" value={JSON.stringify(data, null, 4)}></textarea>
