@@ -1,25 +1,33 @@
 
-import React, { useCallback, useRef, useState } from 'react'
+import React, {useRef} from 'react'
+import { TodoListContextConsumer } from './../modules/TodoListContext'
 
 export const TodoForm = () => {
 
     const inputFiled = useRef();
 
-    const [text, setText] = useState('');
-    const changeText = useCallback( (evt) => setText(evt.target.value), [] )
-    
-    const sendData = (evt) => {
-        evt.preventDefault()
+    const sendData = (evt, data) => {
+        evt.preventDefault();
+        data.action.addTodo(data.state.text);
+        data.action.changeText('');
+        inputFiled.current.focus();
     }
     
     return (
-        <form>
-            <div className="input-group">
-                <input type="text" className="form-control" ref={inputFiled} value={text} onChange={changeText} />
-                <div className="input-group-append">
-                    <button type="submit" className="btn btn-primary mr-1" onClick={sendData}>Submit</button>
-                </div>
-            </div>  
-        </form>
+        <TodoListContextConsumer>
+            { data => (
+                <form>
+                    <div className="input-group">
+                        <input type="text" className="form-control" ref={inputFiled} 
+                            value={data.state.text} onChange={(evt) => data.action.changeText(evt.target.value)} />
+                        <div className="input-group-append">
+                            <button type="submit" className="btn btn-primary mr-1" 
+                                onClick={ (evt) => sendData(evt, data) }>Submit</button>
+                        </div>
+                    </div>  
+                </form>
+            )}
+        </TodoListContextConsumer>
+        
     )
 }

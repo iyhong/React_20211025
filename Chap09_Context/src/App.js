@@ -2,10 +2,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import ColorBox from './components/ColorBox'
 import SelectColor from './components/SelectColor'
-// import TodoTemplate from './components/TodoTemplate'
+import TodoTemplate from './components/TodoTemplate'
 
 import ColorBoxContext from './modules/ColorBoxContext'
 import { SelectColorContextProvider } from './modules/SelectColorContext'
+import { TodoListContextProvider } from './modules/TodoListContext'
 
 function App() {
   const colorValue = {title: 'ColorBox Context', color: 'orange'};
@@ -22,7 +23,9 @@ function App() {
         </ColorBoxContext.Provider>
         
         <hr />
-        
+        <TodoListContextProvider>
+          <TodoTemplate />
+        </TodoListContextProvider>
         </div>
   );
 }
