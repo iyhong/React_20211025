@@ -18,8 +18,8 @@ function Counter(props) {
 export default connect(
     // 값을 받아 props에 지정한 이름으로 주입
     state => ({
-        title: state.title,
-        num: state.num
+        title: state.counterR.title,
+        num: state.counterR.num
     }),
     // 값을 받아 지정한 이름으로 함수 참조 변수 생성 후 주입
     dispatch => ({

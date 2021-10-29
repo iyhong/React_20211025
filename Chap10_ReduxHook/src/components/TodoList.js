@@ -1,12 +1,12 @@
 
 import React from 'react'
+import { useSelector } from 'react-redux';
 import './css/todos.css';
 import TodoListItem from './TodoListItem'
-import { connect } from 'react-redux'
 
-function Todolist(props){
+function Todolist(){
 
-    const { todoList } = props;
+    const { todoList } = useSelector(state => state.todoListR);
 
     return (
         <div>
@@ -26,8 +26,4 @@ function Todolist(props){
         </div>
     )
 }
-export default connect(
-    state => ({
-        todoList: state.todoListR.todoList
-    })
-)(Todolist);
+export default Todolist
