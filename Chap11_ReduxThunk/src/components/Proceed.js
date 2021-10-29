@@ -6,11 +6,12 @@ import { useSelector } from 'react-redux'
 function ProceedContainer() {
 
     const history = useHistory();
-    const loading = useSelector( state => state.contactR.loading.ADD_CONTACT);
+    const { error, loading } = useSelector( state => state.contactR);
 
     return (
         <div>
-            { loading ? <h1>처리중...</h1> : history.push('/getContactList') }
+            { error && <div>Error</div>}
+            { loading.ADD_CONTACT ? <h1>처리중...</h1> : history.push('/getContactList') }
         </div>
     )
 }

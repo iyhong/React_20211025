@@ -1,9 +1,13 @@
 
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addContactAsync } from './../../modules/contactR'
 
 function AddContact() {
 
+    const dispatch = useDispatch();
+    
     const history = useHistory();
     const [data, setData] = useState({
         name: '',
@@ -13,6 +17,7 @@ function AddContact() {
     const changeData = (evt) => setData({...data, [evt.target.name]: evt.target.value});
 
     const sendData = () => {
+        dispatch(addContactAsync(data))
         history.push('/proceed');
     }
 

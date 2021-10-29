@@ -15,7 +15,7 @@ import ReduxThunk from 'redux-thunk'
 import rootReducer from './modules'
 
 const store = createStore(rootReducer, composeWithDevTools(
-    applyMiddleware(ReduxLogger, ReduxThunk)
+    applyMiddleware( ReduxThunk )
 ));
 
 // npm i redux react-redux redux-actions redux-devtools-extension
