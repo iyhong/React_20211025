@@ -47,8 +47,14 @@ const todoListR = handleActions({
         // return {...state, todoList: updates};
     },
     [TODOLIST_DELETETODO]: (state, action) => {
-        const deletes = state.todoList.filter( todo => todo.id !== action.payload );
-        return {...state, todoList: deletes};
+        const index = state.todoList.findIndex( todo => todo.id === action.payload );
+        const data = produce(state, draft => {
+            draft.todoList.splice(index, 1);
+        });
+        return data;
+
+        // const deletes = state.todoList.filter( todo => todo.id !== action.payload );
+        // return {...state, todoList: deletes};
     },
     [TODOLIST_CHANGETEXT]: (state, action) => {
         return {...state, text: action.payload }

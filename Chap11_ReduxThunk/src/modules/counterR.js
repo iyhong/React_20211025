@@ -1,14 +1,23 @@
 
+import axios from 'axios';
 import { createAction, handleActions } from 'redux-actions'
 
 const COUNTER_INCREASE = 'COUNTER/INCREASE';
 const COUNTER_DECREASE = 'COUNTER/DECREASE'; 
 
-export const increaseAction = createAction(COUNTER_INCREASE, (num) => {
-    num = num + 1;
+const increaseAction = createAction(COUNTER_INCREASE, (num) => {
+    console.log('2. increaseAction')
     return num;
 });
 export const decreaseAction = createAction(COUNTER_DECREASE);
+
+export const increaseActionAsync = (num) => (dispatch) => {
+    console.log('1. increaseActionAsync')
+    // axios.get(..).then( resp => dispatch(resp.data))
+    setTimeout( () => {
+        dispatch(increaseAction(num + 10))
+    }, 2000);
+};
 
 const init = {
     num: 0,
